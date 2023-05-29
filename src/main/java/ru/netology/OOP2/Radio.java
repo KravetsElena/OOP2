@@ -2,63 +2,38 @@ package ru.netology.OOP2;
 
 public class Radio {
     private int currentStation;
-    private int minStation = 0;
-    private int maxStation = 9;
-
-
-    public Radio(int maxStation) {
-        this.maxStation = maxStation - 1;
-        this.minStation = minStation;
-        this.currentStation = minStation;
-    }
-
-    public Radio() {
-
-    }
-
+    private int currentVolume;
 
     public int getCurrentStation() {
         return currentStation;
     }
 
-    public int getMinStation() {
-        return minStation;
-    }
-
-    public int getMaxStation() {
-        return maxStation;
-    }
-
-
     public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation > maxStation) {
+        if (newCurrentStation > 9) {
             return;
         }
-        if (newCurrentStation < minStation) {
+        if (newCurrentStation < 0) {
             return;
         }
         currentStation = newCurrentStation;
     }
 
     public void setNextStation() {
-        if (currentStation < maxStation) {
+        if (currentStation < 9) {
             currentStation = currentStation + 1;
-        }
-        if (currentStation >= maxStation) {
+        } else {                            //////////правка
             currentStation = 0;
         }
     }
 
     public void prevStation() {
-        if (currentStation > minStation) {
+        if (currentStation > 0) {
             currentStation = currentStation - 1;
-        }
-        if (currentStation <= 0) {
-            currentStation = maxStation;
+        } else {
+            currentStation = 9;
         }
     }
 
-    private int currentVolume;
 
     public int getCurrentVolume() {
         return currentVolume;
@@ -77,8 +52,7 @@ public class Radio {
     public void increaseVolume() {
         if (currentVolume >= 100) {
             return;
-        }
-        if (currentVolume < 100) {
+        } else {
             currentVolume = currentVolume + 1;
         }
 
@@ -87,8 +61,7 @@ public class Radio {
     public void decreaseVolume() {
         if (currentVolume <= 0) {
             return;
-        }
-        if (currentVolume > 0) {
+        } else {
             currentVolume = currentVolume - 1;
         }
     }
